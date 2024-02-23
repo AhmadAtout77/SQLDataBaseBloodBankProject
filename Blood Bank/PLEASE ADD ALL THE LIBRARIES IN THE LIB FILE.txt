@@ -1,0 +1,5 @@
+run the program
+enter the admin page
+username:Admin
+password:ia12
+click on the show stock report option and a pdf file of the jasper report will pop up

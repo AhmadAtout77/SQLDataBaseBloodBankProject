@@ -1,0 +1,86 @@
+Jasper report quary: select s.bloodgroup,s.numofunits,count(d.donation_id)
+ from Stock s  ,donation d
+where s.bloodgroup=d.blood_group
+ group by s.bloodgroup,s.numofunits
+
+
+
+THE USED TABLES IN THE JASPER REPORT ARE DONATION AND STOCK
+
+
+
+
+
+
+
+
+
+
+
+
+create table donor
+(donor_id char(9) primary key,
+fname varchar(15),
+mname varchar(15),
+lname varchar(15),
+bloodgroup char(2),
+city varchar(15),
+address varchar(15),
+contactnumber char(10),
+lasttimedonated date,
+birthdate date,
+gender char);
+
+
+create table donation
+(donation_ID varchar2(10),
+donation_date date,
+numofunits int,
+blood_group char(2),
+donorId char(9),
+foreign key (donorid) references Donor (Donor_ID)
+on delete set null);
+
+
+create table stock
+(bloodgroup char(2),
+numofunits int);
+
+
+
+create table employee
+(
+fname varchar(15),
+lname varchar(15),
+username varchar(15),
+psword varchar(15),
+email varchar(30),
+e_ID char(9) primary key,
+job_ varchar(15),
+working_hours int,
+paid_per_hour int,
+salary int,
+constraint usernamecons unique(username),
+constraint emailcons unique(email));
+
+create table requester
+(
+username varchar(15),
+psword varchar(15),
+email varchar(30),
+hospital_name varchar(20) primary key,
+address varchar(20),
+contactnumber varchar(20),
+constraint usernamecons1 unique(username),
+constraint emailcons1 unique(email));
+
+create table request
+(
+req_id varchar(15) primary key,
+time_of_req varchar(10),
+dateofreq date,
+bloodgroup char(2),
+num_ofunits_needed int,
+requester_name varchar(20),
+foreign key (requester_name) references requester(hospital_name));
+
